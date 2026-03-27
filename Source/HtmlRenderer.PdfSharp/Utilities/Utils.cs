@@ -96,5 +96,22 @@ namespace TheArtOfDev.HtmlRenderer.PdfSharp.Utilities
             return RColor.FromArgb(c.A, c.R, c.G, c.B);
         }
 
+        /// <summary>
+        /// Convert from HtmlRenderer font style to PdfSharp v6 XFontStyleEx.
+        /// </summary>
+        public static XFontStyleEx Convert(RFontStyle style)
+        {
+            XFontStyleEx result = XFontStyleEx.Regular;
+            if ((style & RFontStyle.Bold) == RFontStyle.Bold)
+                result |= XFontStyleEx.Bold;
+            if ((style & RFontStyle.Italic) == RFontStyle.Italic)
+                result |= XFontStyleEx.Italic;
+            if ((style & RFontStyle.Underline) == RFontStyle.Underline)
+                result |= XFontStyleEx.Underline;
+            if ((style & RFontStyle.Strikeout) == RFontStyle.Strikeout)
+                result |= XFontStyleEx.Strikeout;
+            return result;
+        }
+
     }
 }
